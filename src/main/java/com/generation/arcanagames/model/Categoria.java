@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -32,6 +33,11 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("categoria") 
     private List<Produto> produtos; 
+    
+    @ManyToOne
+    @JsonIgnoreProperties("categorias")
+    private Usuario usuario;
+    
 
 	public Long getId() {
 		return id;
@@ -65,5 +71,18 @@ public class Categoria {
 		this.produtos = produtos;
 	}
 
-        
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}  
 }
+
+
+
+
+
+
+
